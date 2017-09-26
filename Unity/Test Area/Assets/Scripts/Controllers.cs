@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Controllers : MonoBehaviour {
     //Buttons
-    private Valve.VR.EVRButtonId gripButton = Valve.VR.EVRButtonId.k_EButton_Grip;  
-    private Valve.VR.EVRButtonId triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;   
+    public Valve.VR.EVRButtonId gripButton = Valve.VR.EVRButtonId.k_EButton_Grip;  
+    public Valve.VR.EVRButtonId triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;   
 
     //Checking what order the controllers have been added to the game i
-    private SteamVR_Controller.Device controller { get { return SteamVR_Controller.Input((int)trackedObj.index); } }
-    private SteamVR_TrackedObject trackedObj;
+    public SteamVR_Controller.Device controller { get { return SteamVR_Controller.Input((int)trackedObj.index); } }
+    public SteamVR_TrackedObject trackedObj;
 
     HashSet<InteractibleObject> objectHoveringOver = new HashSet<InteractibleObject>();
 
@@ -60,7 +60,7 @@ public class Controllers : MonoBehaviour {
         InteractibleObject collidedObject = collider.GetComponent<InteractibleObject>();
         if (collidedObject)
         {
-            objectHoveringOver.Add(collidedObject;)
+            objectHoveringOver.Add(collidedObject);
         }
     }
     private void OnTriggerExit(Collider collider)
@@ -71,4 +71,6 @@ public class Controllers : MonoBehaviour {
             objectHoveringOver.Remove(collidedObject);
         }
     }
+
+   
 }
