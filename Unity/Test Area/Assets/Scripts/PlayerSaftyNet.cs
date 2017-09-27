@@ -7,35 +7,41 @@ public class PlayerSaftyNet : MonoBehaviour {
     public GameObject playerHead;
     public GameObject playerHandLeft;
     public GameObject playerHandRight;
+    public GameObject checkPoint;
 
     public Material faidNet;
 
-    public float fadeNetIn = 10f;
+    private float fadeNetIn = 4f;
 
-    private float playerDistFromChair;
+    public float playerDistFromChairCheck1;
+  
 
-    private float alphaAmount;
+    public float alphaAmount;
 
     // Use this for initialization
     void Start () {
+        
+
         faidNet.color = new Color(0, 7, 53, 0);
         playerHead = GameObject.Find("Camera (head)");
-        playerHandLeft = GameObject.Find("Controller (left)");
-        playerHandRight = GameObject.Find("Controller (Right)");
+        
+        //playerHandLeft = GameObject.Find("Controller (left)");
+        //playerHandRight = GameObject.Find("Controller (Right)");
 
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () {        
+        
+        playerDistFromChairCheck1 = Vector3.Distance(playerHead.transform.position, this.gameObject.transform.position);
 
-       // playerDistFromChair = Vector3.Distance(playerHead.transform.position, this.gameObject.transform.position);
 
-        //work out fade in
-
-        if (Vector3.Distance(transform.position, playerHead.transform.position) <= fadeNetIn)
+        if (playerDistFromChairCheck1 <= fadeNetIn)
         {
+            alphaAmount = fadeNetIn - playerDistFromChairCheck1;
 
-            faidNet.color = new Color(0, 7, 53, 170);
+            faidNet.color = new Color(0, 7, 53, alphaAmount);
+
         }
 
         if (Vector3.Distance(transform.position, playerHead.transform.position) <= fadeNetIn)
@@ -55,4 +61,7 @@ public class PlayerSaftyNet : MonoBehaviour {
         }
 
     }
+
+   
+
 }
